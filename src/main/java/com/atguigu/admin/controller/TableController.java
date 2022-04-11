@@ -24,38 +24,16 @@ public class TableController {
 
     /**
      *
-     * @param a 不带请求参数或者请求参数不对，400：bad request 一般都是浏览器的参数没有传递正确
+     * @param /*a 不带请求参数或者请求参数不对，400：bad request 一般都是浏览器的参数没有传递正确
      * @return
      */
     @GetMapping (value = "/basic_table")
-    public String basic_table(@RequestParam("a") int a){
-        int i=10/0;
+    public String basic_table(){
+        //int i=10/0;
         return "table/basic_table";
     }
 
-    @GetMapping("/user/insert/{id}")
-    public String insertUser(@PathVariable("id") Long id,
-                             @RequestParam(value = "pn",defaultValue = "1")Integer pn,
-                             RedirectAttributes ra){
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setName("caoyu");
-        user1.setAge(18);
-        user1.setEmail("laoshi@qq.com");
 
-        User user2 = new User();
-        user1.setId(8L);
-        user1.setName("caoyu");
-        user1.setAge(18);
-        user1.setEmail("laoshi@qq.com");
-
-        List users = Arrays.asList(user1,user2);
-        userService.saveOrUpdateBatch(users);
-
-        ra.addAttribute("pn",pn);
-
-        return "redirect:/dynamic_table";
-    }
 
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id,
